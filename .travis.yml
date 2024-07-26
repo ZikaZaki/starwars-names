@@ -2,14 +2,18 @@ sudo: false
 language: node_js
 cache:
   directories:
-    - ~/.npm
+    - node_modules
 notifications:
   email: false
 node_js:
   - 20
+before_install:
+  - npm install -g npm@latest  # Ensure you're installing the latest npm
 install:
-  - npm ci
+  - npm ci  # Use npm ci for cleaner and faster installs
+before_script:
+  - npm prune
 script:
   - npm run test
 after_success:
-  - npx semantic-release
+  - npm run semantic-release
