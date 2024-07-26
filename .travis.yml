@@ -1,21 +1,23 @@
-sudo: false
 language: node_js
-cache:
-  directories:
-    - node_modules
-notifications:
-  email: false
+
 node_js:
-  - node  # This will use the latest stable Node.js version
-before_install:
-  - npm install -g npm
-before_script:
-  - npm prune
-script:
-  - npm run test
-after_success:
-  - npx semantic-release
-env:
-  global:
-    - GH_TOKEN=${GH_TOKEN}
-    - NPM_TOKEN=${NPM_TOKEN}
+  - 20.16.0
+
+stages:
+  - test
+  - release
+  
+jobs:
+  include:
+    - stage: "test"
+      before_script: npm audit
+      script: npm test
+    # Define the release stage that runs semantic-release
+    - stage: release
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
