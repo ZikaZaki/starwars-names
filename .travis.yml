@@ -6,14 +6,16 @@ cache:
 notifications:
   email: false
 node_js:
-  - node # Latest stable Node.js release
+  - node  # This will use the latest stable Node.js version
 before_install:
-  - npm install -g npm@latest  # Ensure you're installing the latest npm
-install:
-  - npm ci  # Use npm ci for cleaner and faster installs
+  - npm install -g npm
 before_script:
   - npm prune
 script:
   - npm run test
 after_success:
-  - npm run semantic-release
+  - npx semantic-release
+env:
+  global:
+    - GH_TOKEN=${GH_TOKEN}
+    - NPM_TOKEN=${NPM_TOKEN}
