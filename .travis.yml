@@ -6,7 +6,7 @@ cache:
 notifications:
   email: false
 node_js:
-  - 20
+  - node # Latest stable Node.js release
 before_install:
   - npm install -g npm@latest  # Ensure you're installing the latest npm
 install:
