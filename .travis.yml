@@ -6,7 +6,7 @@ cache:
 notifications:
   email: false
 node_js:
-  - 18
+  - 20
 before_install:
   - npm install -g npm
 before_script:
@@ -14,4 +14,4 @@ before_script:
 script:
   - npm run test:single
 after_success:
-  - npx semantic-release
+  - npm run semantic-release
