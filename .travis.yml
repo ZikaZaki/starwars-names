@@ -1,29 +1,39 @@
+# Use the latest Ubuntu LTS distribution
 dist: focal
 
+# Use Node.js as the language
 language: node_js
+
+# Cache the Node.js modules to speed up the build process
 cache:
   directories:
     - node_modules
+
+# Use the latest LTS version of Node.js
 node_js:
   - 20.16.0
 
+# Define the stages of the build process
 stages:
   - test
   - release
-  
+
 jobs:
   include:
-    - stage: "test"
-      before_script: npm ci
+    # Test stage
+    - stage: test
+      before_script:
+        - npm ci
       script: npm test
+
+    # Release stage
     - stage: release
-      before_script: npm ci
-      script:
-        - echo "Executing release script..."
-        - npx semantic-release
-      before_deploy:
-        - echo "Before deploy step..."
-        - echo "GH_TOKEN: $GH_TOKEN"
-        - echo "NPM_TOKEN: $NPM_TOKEN"
-      after_deploy:
-        - echo "After deploy step..."
+      before_script:
+        - npm ci
+      script: skip
+      deploy:
+        # Use the script provider to execute the release script
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release --debug
