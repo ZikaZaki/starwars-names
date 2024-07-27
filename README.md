@@ -1,5 +1,7 @@
 # all-starwars-names
 
+[![Build Status](https://img.shields.io/travis/com/ZikaZaki/starwars-names/main?label=Build&logo=travis-ci&logoColor=white)](https://app.travis-ci.com/ZikaZaki/starwars-names)
+
 A simple npm library that provides a collection of all Star Wars character names and the ability to generate a random unique Star Wars name.
 
 ## Installation
