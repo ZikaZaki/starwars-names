@@ -1,30 +1,19 @@
-# Use the latest Ubuntu LTS distribution
 dist: focal
 
-# Use Node.js as the language
 language: node_js
-
-# Cache the Node.js modules to speed up the build process
 cache:
   directories:
     - node_modules
-
-# Use the latest LTS version of Node.js
 node_js:
   - 20.16.0
 
-# Define the stages of the build process
 stages:
-  - test
   - release
-
+  
 jobs:
   include:
-    # Test stage
-    - stage: test
-      before_script: npm ci
-      script: npm test
-    # Release stage
-    - stage: release
-      before_script: npm ci
+    - stage: "release"
+      before_script: 
+      - npm ci
+      - npm test
       script: npx semantic-release
