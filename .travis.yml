@@ -1,19 +1,42 @@
-dist: focal
+# Specify the distribution
+dist: jammy
 
+# Use Node.js as the language
 language: node_js
+node_js:
+  - '20.16.0'
+
+# Cache dependencies to speed up builds
 cache:
   directories:
     - node_modules
-node_js:
-  - 20.16.0
 
-stages:
-  - release
-  
+# Notifications
+notifications:
+  email: false
+  #   on_success: always
+  #   on_failure: always
+
+# Specify the branches that should trigger builds
+branches:
+  only:
+    - main
+    - develop
+    - v*
+
+# Install dependencies, run tests, and perform build steps
 jobs:
   include:
-    - stage: "release"
-      before_script: 
-      - npm ci
-      - npm test
-      script: npx semantic-release
+    - name: Install Dependencies and Run Tests
+      script:
+        - npm ci
+        - npm test
+
+# Deployment setup
+deploy:
+  provider: script
+  script: npx semantic-release
+  on:
+    branch:
+      - main
+      - v*
