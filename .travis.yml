@@ -22,13 +22,9 @@ jobs:
   include:
     # Test stage
     - stage: test
-      before_script:
-        - npm ci
+      before_script: npm ci
       script: npm test
-
     # Release stage
     - stage: release
-      before_script:
-        - npm ci
-      script:
-        - npx semantic-release
+      before_script: npm ci
+      script: npx semantic-release
