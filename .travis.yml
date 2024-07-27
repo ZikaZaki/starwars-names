@@ -30,14 +30,16 @@ jobs:
     - stage: release
       before_script:
         - npm ci
-      script: skip
-      deploy:
-        # Use the script provider to execute the release script
-        provider: script
-        skip_cleanup: true
-        script:
-          - npx semantic-release --debug
-        on:
-          branches:    # ← new!
-            only:      # ← new!
-              - main   # ← new!
+      script:
+        - npx semantic-release --debug
+      # script: skip
+      # deploy:
+      #   # Use the script provider to execute the release script
+      #   provider: script
+      #   skip_cleanup: true
+      #   script:
+      #     - npx semantic-release --debug
+      #   on:
+      #     branches:    # ← new!
+      #       only:      # ← new!
+      #         - main   # ← new!
