@@ -32,12 +32,12 @@ jobs:
         - npm ci
         - npm test
         - npm run check-coverage
+        # - npm run report-coverage
 
 # Deployment setup
 deploy:
   provider: script
   script:
-    - npm run report-coverage 
     - npx semantic-release
   on:
     branch:

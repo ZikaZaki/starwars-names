@@ -1,6 +1,10 @@
 # all-starwars-names
 
 [![Build Status](https://img.shields.io/travis/com/ZikaZaki/starwars-names/main?label=Build&logo=travis-ci&logoColor=white)](https://app.travis-ci.com/ZikaZaki/starwars-names)
+![Codecov](https://img.shields.io/codecov/c/github/ZikaZaki/starwars-names)
+![NPM Downloads](https://img.shields.io/npm/dw/all-starwars-names)
+![NPM Version](https://img.shields.io/npm/v/all-starwars-names)
+![GitHub License](https://img.shields.io/github/license/ZikaZaki/starwars-names)
 
 A simple npm library that provides a collection of all Star Wars character names and the ability to generate a random unique Star Wars name.
 
