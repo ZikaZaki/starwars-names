@@ -31,11 +31,14 @@ jobs:
       script:
         - npm ci
         - npm test
+        - npm run check-coverage
 
 # Deployment setup
 deploy:
   provider: script
-  script: npx semantic-release
+  script:
+    - npm run report-coverage 
+    - npx semantic-release
   on:
     branch:
       - main
