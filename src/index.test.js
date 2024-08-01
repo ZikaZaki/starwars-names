@@ -1,34 +1,32 @@
-var expect = require("chai").expect;
-var starwars = require("./index");
+import { expect } from "chai";
+import { all, random } from "./index.js";
 
 describe("starwars-names", function () {
   describe("all", function () {
     it("should be an array of strings", function () {
-      expect(starwars.all).to.satisfy(isArrayOfStrings);
+      expect(all).to.satisfy(isArrayOfStrings);
 
       function isArrayOfStrings(array) {
-        return array.every(function (item) {
-          return typeof item === "string";
-        });
+        return array.every((item) => typeof item === "string");
       }
     });
 
     it("should contain `ZikaZaki`", function () {
-      expect(starwars.all).to.include("ZikaZaki");
+      expect(all).to.include("ZikaZaki");
     });
   });
 
   describe("random", function () {
     it("should return a random item from the starwars.all", function () {
-      var randomItem = starwars.random();
-      expect(starwars.all).to.include(randomItem);
+      const randomItem = random();
+      expect(all).to.include(randomItem);
     });
 
     it("should return an array of random items if passed a number", function () {
-      var randomItems = starwars.random(3);
+      const randomItems = random(3);
       expect(randomItems).to.have.length(3);
-      randomItems.forEach(function (item) {
-        expect(starwars.all).to.include(item);
+      randomItems.forEach((item) => {
+        expect(all).to.include(item);
       });
     });
   });

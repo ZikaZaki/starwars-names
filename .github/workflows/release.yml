@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  # workflow_dispatch:
-  push:
-    branches: [ "main", "next", "beta", "alpha", "rc" ]
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main", "next", "beta", "alpha", "rc" ]
 
 jobs:
   release:
@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      # - name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@v4.0.1
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
 
       # - name: Semantic Release
       #   env:

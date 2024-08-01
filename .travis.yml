@@ -11,6 +11,13 @@ cache:
   directories:
     - node_modules
 
+# Define stages
+stages:
+  - name: install
+  - name: test
+  - name: coverage
+  - name: deploy
+
 # Notifications
 notifications:
   email: false
@@ -27,18 +34,35 @@ branches:
 # Install dependencies, run tests, and perform build steps
 jobs:
   include:
-    - name: Install Dependencies and Run Tests
+    # Job to install dependencies
+    - name: Install Dependencies
+      stage: install
       script:
         - npm ci
+    
+    # Job to run tests
+    - name: Run Tests
+      stage: test
+      script:
         - npm test
+
+    # Job to check code coverage
+    - name: Check Coverage
+      stage: coverage
+      script:
         - npm run check-coverage
-        # - npm run report-coverage
+    
+    # Job to report code coverage
+    - name: Report Coverage
+      stage: coverage
+      script:
+        - npm run report-coverage
 
 # Deployment setup
 deploy:
   provider: script
   script:
-    - npx semantic-release
+    - npm run semantic-release
   on:
     branch:
       - main
