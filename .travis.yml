@@ -46,25 +46,20 @@ jobs:
       script:
         - npm test
 
-    # Job to check code coverage
-    - name: Check Coverage
+    # Job to check & report code coverage
+    - name: Check & Report Coverage
       stage: coverage
       script:
         - mkdir -p .nyc_output # Ensure the directory is created
         - npm run check-coverage
-    
-    # Job to report code coverage
-    - name: Report Coverage
-      stage: coverage
-      script:
         - npm run report-coverage
-
-# Deployment setup
-deploy:
-  provider: script
-  script:
-    - npx semantic-release
-  on:
-    branch:
-      - main
-      - v*
+    
+    # Job to deploy the package
+    - name: Deploy
+      stage: deploy
+      script:
+        - npx semantic-release
+      on:
+        branch:
+          - main
+          - v*
