@@ -50,6 +50,7 @@ jobs:
     - name: Check Coverage
       stage: coverage
       script:
+        - mkdir -p .nyc_output # Ensure the directory is created
         - npm run check-coverage
     
     # Job to report code coverage
