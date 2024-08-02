@@ -15,6 +15,7 @@ cache:
 stages:
   - name: install
   - name: test
+  - name: build
   - name: coverage
   - name: deploy
 
@@ -45,6 +46,12 @@ jobs:
       stage: test
       script:
         - npm test
+    
+    # Job to build the package
+    - name: Build
+      stage: build
+      script:
+        - npm run build
 
     # Job to check & report code coverage
     - name: Check & Report Coverage
